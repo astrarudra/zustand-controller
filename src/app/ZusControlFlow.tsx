@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
 import 'reactflow/dist/style.css';
  
 const initialNodes = [
-  { id: '1', position: { x: 0, y: 0 }, data: { label: 'getState' } },
-  { id: '2', position: { x: 0, y: 200 }, data: { label: 'API Call' } },
-  { id: '3', position: { x: 0, y: 400 }, data: { label: 'setState' } },
+  { id: '1', position: { x: 200, y: 0 }, data: { label: 'getState' } },
+  { id: '2', position: { x: 500, y: 120 }, data: { label: 'API Call' } },
+  { id: '3', position: { x: 800, y: 240 }, data: { label: 'setState' } },
 ];
 const initialEdges = [
     { id: 'e1-2', source: '1', target: '2' },
@@ -22,7 +22,7 @@ export default function ZusControlFlow() {
   );
  
   return (
-    <div style={{ width: '80vw', height: '50vh', padding: "20px", border: "2px black solid" }}>
+    <div className="mx-auto w-4/5 my-6 p-5 shadow-lg rounded-lg bg-[#ffffff]" style={{  height: '50vh'}}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
