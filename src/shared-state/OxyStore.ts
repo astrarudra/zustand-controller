@@ -32,3 +32,5 @@ export const useOxyStore = create<IOxyStore>()(
 export const useUndoStore = (selector: any) => {
   return useStore(useOxyStore.temporal, selector);
 }
+
+export const useTemporalStore = create(useOxyStore.temporal);
