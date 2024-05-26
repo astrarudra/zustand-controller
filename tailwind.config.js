@@ -11,7 +11,14 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        notosans: ['"Noto Sans"', 'sans-serif'],
+      },
+      screens: {
+        'xs': '400px',
+      },
+    },
   },
   plugins: [],
 };

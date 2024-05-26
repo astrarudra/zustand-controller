@@ -1,20 +1,18 @@
 import { create, useStore } from 'zustand'
 import { immer } from "zustand/middleware/immer";
 import { temporal } from 'zundo';
+import { createWithEqualityFn  } from 'zustand/traditional'
 import { shallow } from 'zustand/shallow'
 import { INotificationSlice, notificationSlice } from './notification/notification.slice'
 import { IGeneralSlice, generalSlice } from './general/general.slice';
 import { ICounterSlice, counterSlice } from './counter/counter.slice';
-import { useShallow } from 'zustand/react/shallow'
-const useS = useShallow
-export { useS }
 
 export interface IOxyStore extends IGeneralSlice, INotificationSlice, ICounterSlice {}
 
-export const useOxyStore = create<IOxyStore>()(
-  temporal(
-    immer(
-      (...o) => ({
+export const useOxyStore = createWithEqualityFn<IOxyStore>()(
+  temporal( // For Zundo - Undo Redo, Don't Need, Dont Add this.
+    immer( // For Immutable State & one liner setState
+      (...o) => ({ // Store Split into slices for better management.
         ...generalSlice(...o),
         ...notificationSlice(...o),
         ...counterSlice(...o),
@@ -27,7 +25,7 @@ export const useOxyStore = create<IOxyStore>()(
       equality: shallow
     }
   )
-)
+, shallow) // Default equality function
 
 export const useUndoStore = (selector: any) => {
   return useStore(useOxyStore.temporal, selector);
