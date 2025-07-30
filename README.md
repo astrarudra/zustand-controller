@@ -1,5 +1,5 @@
 # Zustand Controller - 🐻 Bear necessities for workflow
-![Zustand Controller](hhttps://astrarudra.github.io/data/images/zustand-controller-banner.jpg)
+![Zustand Controller](https://astrarudra.github.io/data/images/zustand-controller-banner.jpg)
 
 
 <br>
