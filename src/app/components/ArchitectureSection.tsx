@@ -1,5 +1,77 @@
 import { Emoji, Gist, ImgLazy, Section, Title } from "./UIElements";
+import { useState } from "react";
 
+const imageBase = 'https://astrarudra.github.io/data/images/'
+const archImgs = {
+    reduxSaga: `${imageBase}/redux-saga.png`,
+    justZustand: `${imageBase}/just-zustand.png`,
+    zustandController: `${imageBase}/zustand-controller.png`,
+    controllerChained: `${imageBase}/controller-chained.png`,
+    controllerServiceLayer: `${imageBase}/service-layer.png`,
+}
+
+// Modal component for full-screen image viewing
+const ImageModal = ({ src, alt, isOpen, onClose }: any) => {
+    if (!isOpen) return null;
+
+    return (
+        <div 
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
+            onClick={onClose}
+        >
+            <div className="relative max-w-full max-h-full">
+                <button
+                    onClick={onClose}
+                    className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors"
+                >
+                    ✕ Close
+                </button>
+                <img 
+                    src={src} 
+                    alt={alt}
+                    className="max-w-full max-h-full object-contain"
+                    onClick={(e) => e.stopPropagation()}
+                />
+                <div className="absolute -bottom-12 left-0 text-white text-sm opacity-75">
+                    Click anywhere outside to close
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// Clickable image component with hover effects
+const ClickableImage = ({ src, alt, style, title }: any) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    return (
+        <>
+            <div 
+                className="relative cursor-pointer group transition-all duration-300 hover:scale-105"
+                onClick={() => setIsModalOpen(true)}
+                title={`Click to view ${title} in full screen`}
+            >
+                <ImgLazy 
+                    src={src} 
+                    alt={alt} 
+                    style={style}
+                    className="transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-blue-500/25 rounded-lg"
+                />
+                <div className="absolute inset-0 bg-blue-500 bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg flex items-center justify-center">
+                    <div className="bg-black bg-opacity-0 group-hover:bg-opacity-70 text-white text-sm px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        🔍 Click to expand
+                    </div>
+                </div>
+            </div>
+            <ImageModal 
+                src={src}
+                alt={alt}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
+        </>
+    );
+};
 
 const ReduxSaga = () => (
     <div className="py-4">
@@ -10,7 +82,7 @@ const ReduxSaga = () => (
         <div className="flex-1 lg:pr-5">
           <p className="cool-text">
             <Emoji symbol="📜" label="scroll" className="text-xl mr-2" />
-            <b>Old-school</b> state management that’s <b>bogged down</b> with complexity.<br />
+            <b>Old-school</b> state management that's <b>bogged down</b> with complexity.<br />
             <Emoji symbol="😅" label="arrows in a circle" className="text-xl mr-2" />
             <b>Complex middleware</b> and <b>function*</b> - Its f* in short - makes sense.<br />
             <Emoji symbol="😵" label="lightbulb" className="text-xl mr-2" />
@@ -26,7 +98,12 @@ const ReduxSaga = () => (
           </p>
         </div>
         <div className="flex-1 flex justify-left items-center lg:pl-5 mt-5 lg:mt-0">
-          <ImgLazy src="https://i.imgur.com/dP0N3sL.png" alt="The Redux Saga" style={{ maxHeight: '300px', maxWidth: '100%' }} />
+          <ClickableImage 
+            src={archImgs.reduxSaga} 
+            alt="The Redux Saga Architecture" 
+            style={{ maxHeight: '300px', maxWidth: '100%' }}
+            title="Redux Saga Architecture"
+          />
         </div>
       </div>
     </div>
@@ -51,7 +128,12 @@ const JustZustand = () => (
             </p>
             </div>
             <div className="flex-1 flex justify-center items-center lg:pl-5 mt-5 lg:mt-0">
-            <ImgLazy src="https://i.imgur.com/Euhdlyv.png" alt="Just Zustand" style={{ maxHeight: '130px', maxWidth: '100%' }} />
+            <ClickableImage 
+                src={archImgs.justZustand} 
+                alt="Just Zustand Architecture" 
+                style={{ maxHeight: '130px', maxWidth: '100%' }}
+                title="Pure Zustand Architecture"
+            />
             </div>
         </div>
     </div>
@@ -86,7 +168,12 @@ const ZustandController = () => (
                 </p>
             </div>
             <div className="flex-1 flex justify-center items-center lg:pl-5 mt-5 lg:mt-0">
-                <ImgLazy src="https://i.imgur.com/42pT7xj.png" alt="Service Layer" style={{ maxHeight: '250px', maxWidth: '100%' }} />
+                <ClickableImage 
+                    src={archImgs.zustandController} 
+                    alt="Zustand Controller Architecture" 
+                    style={{ maxHeight: '250px', maxWidth: '100%' }}
+                    title="Zustand Controller Pattern"
+                />
             </div>
         </div>
     </div>
@@ -115,7 +202,12 @@ const ControllerChained = () => (
                 </p>
             </div>
             <div className="flex-1 flex justify-center items-center lg:pl-5 mt-5 lg:mt-0">
-                <ImgLazy src="https://i.imgur.com/uieOm1g.png" alt="Service Layer" style={{ maxHeight: '370px', maxWidth: '100%' }} />
+                <ClickableImage 
+                    src={archImgs.controllerChained} 
+                    alt="Controller Chained Architecture" 
+                    style={{ maxHeight: '370px', maxWidth: '100%' }}
+                    title="Chained Controller Pattern"
+                />
             </div>
         </div>
     </div>
@@ -144,7 +236,12 @@ const ControllerServiceLayer = () => (
                 </p>
             </div>
             <div className="flex-1 flex justify-center items-center lg:pl-5 mt-5 lg:mt-0">
-                <ImgLazy src="https://i.imgur.com/CjKWn0g.png" alt="Controller Chained" style={{ maxHeight: '250px', maxWidth: '100%' }} />
+                <ClickableImage 
+                    src={archImgs.controllerServiceLayer} 
+                    alt="Controller + Service Layer Architecture" 
+                    style={{ maxHeight: '250px', maxWidth: '100%' }}
+                    title="Controller with Service Layer"
+                />
             </div>
         </div>
     </div>

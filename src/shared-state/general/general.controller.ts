@@ -12,6 +12,7 @@ export interface IGeneralController {
 export const generalController: IGeneralController = {
     initilize: () => {
         console.log("General Controller Initialized");
+        setState({ demoData: "", demoState: 0, fsLoader: null})
     },
     demo: async () => {
         setState({ demoData: "Demo Controller Initialized...", demoState: 1})
@@ -27,6 +28,11 @@ export const generalController: IGeneralController = {
         const json = await response.json()
         console.log("Data from Gist", json)
         setState({ demoData: json.data, demoState: 4, fsLoader: null})
+        await delay(1000)
+        setState({ demoData: json.data, demoState: 5})
+        await delay(2000)
+        // Reset after demo completion
+        setState({ demoData: "", demoState: 0})
     },
     demoPure: async () => {
         setState({ demoData: "Calling an API - getGist Raw", demoState: 2, fsLoader: "Loading Gist Data"})

@@ -1,10 +1,10 @@
 # Zustand Controller - 🐻 Bear necessities for workflow
-![Zustand Controller](https://i.imgur.com/GfYs0k0.jpg)
+![Zustand Controller](hhttps://astrarudra.github.io/data/images/zustand-controller-banner.jpg)
 
 
 <br>
 
-**Visit the Website - [ZustandController.netlify.app](https://zustandcontroller.netlify.app)**
+**Visit the Website - [ZustandController.1ax.in](https://zustandcontroller.1ax.in)**
 
 <br>
 

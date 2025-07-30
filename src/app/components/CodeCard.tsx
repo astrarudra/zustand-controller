@@ -29,12 +29,4 @@ const CodeSection = () => {
     );
 }
 
-/*
-https://i.imgur.com/42pT7xj.png
-https://i.imgur.com/uieOm1g.png
-https://i.imgur.com/CjKWn0g.png
-https://i.imgur.com/dP0N3sL.png
-https://i.imgur.com/Euhdlyv.png
-*/
-
 export default CodeSection;

@@ -59,7 +59,7 @@ export function App() {
           {/* <Counter/> */}
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
