@@ -68,7 +68,7 @@ export const Footer = () => {
 
             {/* Right side - Copyright */}
             <div className="flex items-center space-x-4 text-gray-400 text-sm">
-              <span>💻 Made with ❤️ by AstraRudra</span>
+              <span>Made with ❤️ by AstraRudra</span>
               <span>•</span>
               <span>© 2025</span>
             </div>

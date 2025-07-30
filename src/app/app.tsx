@@ -4,6 +4,7 @@ import { Card } from "./components/UIElements";
 import { ConnectedComponent, ControllerTriggerButton } from "./appComponents/DemoElements";
 import CodeSection from "./components/CodeCard";
 import ArchitectureSection from "./components/ArchitectureSection";
+import AIAgentSection from "./components/AIAgentSection";
 import { FSLoader } from "./appComponents/ConnectedElelements";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -56,6 +57,7 @@ export function App() {
           <IntroSection />
           <CodeSection />
           <ArchitectureSection />
+          <AIAgentSection />
           {/* <Counter/> */}
         </div>
       </div>
